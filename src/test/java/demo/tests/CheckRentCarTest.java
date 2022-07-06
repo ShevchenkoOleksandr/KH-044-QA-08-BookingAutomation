@@ -1,42 +1,37 @@
 package demo.tests;
-import demo.pages.RentCarPage;
-import org.openqa.selenium.By;
-import org.testng.Assert;
+import demo.pages.HomePage;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import static org.hamcrest.MatcherAssert.assertThat;
 
 
 public class CheckRentCarTest extends BaseTestRunner{
+    HomePage homePage;
 
 
-
+    @BeforeMethod(alwaysRun = true)
+    public void setUp() {
+       homePage = new HomePage(driver);
+        homePage = homePage.acceptCookies()
+                .clickCurrencyButton()
+                .switchCurrency("USD")
+                .checkCurrency("USD")
+                .clickLanguageButton()
+                .switchLanguage("en-gb");
+    }
 
     @Test (description = "rent a car")
     public void rentCar() {
-        RentCarPage rentCarPage = new RentCarPage(driver);
+        homePage.gotoRentCarPage()
+                .scrollToCityField()
+                .setNewCity("Krakow")
+                .selectCity("Kraków, Lesser Poland, Poland")
+                .setCheckInDate("2022-10-10")
+                .setCheckOutDate("2022-12-02")
+                .clickSearchButton()
+                .checkLocations("Kraków", "Kraków")
+                .checkDates("2022-10-10", "2022-12-02")
+                .checkCountCars();
 
-
-
-        driver.findElement(rentCarButton).click();
-        // select city
-        driver.findElement(By.cssSelector("#ss_origin")).click();
-        driver.findElement(By.cssSelector("#ss_origin")).clear();
-        driver.findElement(By.cssSelector("#ss_origin")).sendKeys("Krakow");
-        driver.findElement(listCities).click();
-        // select check-in date
-        driver.findElement(checkInButton).click();
-
-        // select check-out date
-        driver.findElement(checkOutButton).click();
-
-
-
-        //click on searchButton
-        driver.findElement(searchButton).click();
-
-//expected result
-        Assert.assertEquals("","https://cars.booking.com/SearchResults");
-//        assertThat(contains);
     }
 }

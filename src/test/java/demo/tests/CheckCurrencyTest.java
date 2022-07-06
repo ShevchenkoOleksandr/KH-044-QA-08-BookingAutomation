@@ -10,14 +10,14 @@ public class CheckCurrencyTest extends BaseTestRunner {
     @Test(description = "Changing of currency")
     public void changeCurrency() {
         HomePage homePage = new HomePage(driver);
-        homePage.clickCurrencyButton();
-        homePage.switchCurrency("USD")
-                .checkCurrency("USD");
+        homePage.clickCurrencyButton()
+                .switchCurrency("USD")
+                .checkCurrency("USD")
+                .clickLanguageButton()
+                .switchLanguage("en-gb");
 
-       homePage.clickLanguageButton();
+//       homePage.clickLanguageButton();
 //        homePage.switchLanguage("uk");
 
-
-//        Assert.assertEquals(driver.findElement(currencyText).getText(), newCurrency);
     }
 }

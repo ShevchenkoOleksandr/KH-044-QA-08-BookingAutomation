@@ -32,9 +32,4 @@ public class BaseTestRunner {
 //        driver.quit();
     }
 
-    @BeforeMethod(alwaysRun = true)
-    public void setUp() {
-        driver.get("https://www.booking.com/");
-    }
-
 }

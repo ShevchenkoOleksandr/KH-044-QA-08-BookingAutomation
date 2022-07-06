@@ -5,7 +5,7 @@ import demo.components.LanguageDropDown;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.testng.Assert;
+
 
 public class BasePage {
     protected WebDriver driver;
@@ -17,13 +17,15 @@ public class BasePage {
     private CurrencyDropDown currencyDropDown;
     private LanguageDropDown languageDropDown;
 
-    public BasePage (WebDriver driver) {
-        this.driver=driver;
-        initElements ();
+    private final By acceptCookiesButton = By.cssSelector("button#onetrust-accept-btn-handler");
+
+    public BasePage(WebDriver driver) {
+        this.driver = driver;
+        initElements();
 
     }
 
-    private void initElements () {
+    private void initElements() {
         currencyButton = driver.findElement(By.cssSelector("[data-modal-header-async-type=currencyDesktop]"));
         currencyText = driver.findElement(By.cssSelector("[data-modal-header-async-type=currencyDesktop]" +
                 " span.bui-button__text span:first-child"));
@@ -38,51 +40,39 @@ public class BasePage {
         return currencyButton;
     }
 
-    public void clickCurrencyButton (){
-        getCurrencyButton().click();
-    }
-
     // currencyText
     public WebElement getCurrencyText() {
         return currencyText;
     }
+
     // languageButton
     public WebElement getLanguageButton() {
         return languageButton;
     }
 
-    public void clickLanguageButton (){
-        getLanguageButton().click();
-    }
     // rentCarButton
     public WebElement getRentCarButton() {
         return rentCarButton;
     }
 
-    public void clickRentCarButton (){
-        getRentCarButton().click();
-    }
-
     //currencyDropDown
-    public CurrencyDropDown getCurrencyDropDown (){
+    public CurrencyDropDown getCurrencyDropDown() {
         return currencyDropDown;
     }
+
     //languageDropDown
-    public LanguageDropDown getLanguageDropDown (){
+    public LanguageDropDown getLanguageDropDown() {
         return languageDropDown;
     }
 
+    //cookieButton
+    public boolean isAcceptCookiesButton() {
+        return driver.findElement(acceptCookiesButton).isDisplayed();
+    }
+
+    public void clickCookieButton() {
+        driver.findElement(acceptCookiesButton).click();
+    }
     //Functional
 
-    public void chooseCurrency(String newCurrency) {
-        getCurrencyDropDown().setNewCurrency(newCurrency);
-    }
-
-    public void checkCurrency (String dueCurrency) {
-        Assert.assertEquals(getCurrencyText().getText(), dueCurrency);
-    }
-
-    public void chooseLanguage(String newLanguage) {
-        getLanguageDropDown().setNewLanguage(newLanguage);
-    }
 }
