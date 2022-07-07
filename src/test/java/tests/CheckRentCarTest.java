@@ -1,5 +1,5 @@
-package demo.tests;
-import demo.pages.HomePage;
+package tests;
+import pages.HomePage;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 

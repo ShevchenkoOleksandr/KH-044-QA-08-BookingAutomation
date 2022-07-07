@@ -1,7 +1,7 @@
-package demo.pages;
+package pages;
 
-import demo.components.CurrencyDropDown;
-import demo.components.LanguageDropDown;
+import components.CurrencyDropDown;
+import components.LanguageDropDown;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;

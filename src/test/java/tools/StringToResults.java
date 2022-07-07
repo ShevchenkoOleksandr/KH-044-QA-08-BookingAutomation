@@ -1,7 +1,6 @@
-package demo.tools;
+package tools;
 
 import java.time.*;
-import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 

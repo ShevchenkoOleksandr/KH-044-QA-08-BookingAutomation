@@ -1,6 +1,6 @@
-package demo.tests;
+package tests;
 
-import demo.pages.HomePage;
+import pages.HomePage;
 
 import org.testng.annotations.Test;
 

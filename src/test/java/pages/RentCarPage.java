@@ -1,8 +1,8 @@
-package demo.pages;
+package pages;
 
-import demo.components.ListCities;
-import demo.components.CalendarCheckInOut;
-import demo.tools.StringToResults;
+import components.ListCities;
+import components.CalendarCheckInOut;
+import tools.StringToResults;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;

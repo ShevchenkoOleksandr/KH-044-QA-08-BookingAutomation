@@ -1,6 +1,6 @@
-package demo.pages;
+package pages;
 
-import demo.tools.StringToResults;
+import tools.StringToResults;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
