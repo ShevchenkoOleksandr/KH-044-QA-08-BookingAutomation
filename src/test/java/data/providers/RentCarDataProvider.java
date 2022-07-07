@@ -13,4 +13,11 @@ public class RentCarDataProvider {
                 }// {location, fullCityName, checkInDate, checkOutDate}
         };
     }
+    @DataProvider(name = "startData")
+    public static Object[][] startData() {
+        return new Object[][]{
+                {"USD", "en-gb"
+                }// {currency, language}
+        };
+    }
 }
