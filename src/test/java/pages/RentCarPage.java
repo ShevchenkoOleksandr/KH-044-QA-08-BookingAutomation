@@ -1,7 +1,8 @@
 package pages;
 
-import components.ListCities;
 import components.CalendarCheckInOut;
+import components.ListCities;
+import io.qameta.allure.Step;
 import tools.StringToResults;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -37,17 +38,21 @@ public class RentCarPage extends BasePage {
         return cityField;
     }
 
+    @Step("Click on city field")
     public RentCarPage clickCityField() {
         getCityField().click();
         getCityField().clear();
         return this;
     }
 
+    @Step("Enter city name")
     public RentCarPage setNewCity(String city) {
         getCityField().sendKeys(city);
+        setWait(2000);
         return this;
     }
 
+    @Step("Select city from the list")
     public RentCarPage selectCity(String city) {
         listCities.setMyCity(city);
         return this;
@@ -55,35 +60,44 @@ public class RentCarPage extends BasePage {
 
     public CalendarCheckInOut openCheckIn(){
         checkInButton.click();
+        setWait(2000);
         return calendarInOut;
     }
 
     public CalendarCheckInOut openCheckOut(){
         checkOutButton.click();
+        setWait(2000);
         return calendarInOut;
     }
 
+    @Step("Select CheckInDate")
     public RentCarPage setCheckInDate(String checkInDate) {
         openCheckIn()
                 .initElementsIn()
                 .searchMonth(StringToResults.monthToMills(checkInDate))
                 .setDay(StringToResults.daysToMills(checkInDate));
         openCheckIn();
+        setWait(2000);
         return this;
     }
+
+    @Step("Select CheckOutDate")
     public RentCarPage setCheckOutDate(String checkOutDate) {
         openCheckOut()
                 .initElementsOut()
                 .searchMonth(StringToResults.monthToMills(checkOutDate))
                 .setDay(StringToResults.daysToMills(checkOutDate));
+        setWait(2000);
         return this;
     }
 
     public RentCarPage scrollToCityField() {
         ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView(true)", cityField);
+        setWait(2000);
         return this;
     }
 
+    @Step("Click on SearchButton")
     public ResultsPage clickSearchButton (){
         searchButton.click();
         return new ResultsPage(driver);

@@ -1,8 +1,11 @@
 package tests;
+import data.providers.FlightsDataProvider;
+import data.providers.RentCarDataProvider;
 import pages.HomePage;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import static data.PagesUrl.Urls.HOME_PAGE_URL;
 
 
 public class CheckRentCarTest extends BaseTestRunner{
@@ -11,7 +14,8 @@ public class CheckRentCarTest extends BaseTestRunner{
 
     @BeforeMethod(alwaysRun = true)
     public void setUp() {
-       homePage = new HomePage(driver);
+        openPage(HOME_PAGE_URL);
+        homePage = new HomePage(driver);
         homePage = homePage.acceptCookies()
                 .clickCurrencyButton()
                 .switchCurrency("USD")
@@ -20,10 +24,13 @@ public class CheckRentCarTest extends BaseTestRunner{
                 .switchLanguage("en-gb");
     }
 
-    @Test (description = "rent a car")
+    @Test (description = "rent a car",
+            dataProvider = "orderData",
+            dataProviderClass = RentCarDataProvider.class)
     public void rentCar() {
         homePage.gotoRentCarPage()
                 .scrollToCityField()
+                .clickCityField()
                 .setNewCity("Krakow")
                 .selectCity("Kraków, Lesser Poland, Poland")
                 .setCheckInDate("2022-10-10")

@@ -1,6 +1,8 @@
 package tools;
 
-import java.time.*;
+import java.time.LocalDate;
+import java.time.Month;
+import java.time.ZoneOffset;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -20,7 +22,7 @@ public class StringToResults {
 
     public static String monthToMills(String date){
         Month parseMonth = LocalDate.parse(date).getMonth();
-        Integer parseYear = LocalDate.parse(date).getYear();
+        int parseYear = LocalDate.parse(date).getYear();
 
         long idInMills = LocalDate.of(parseYear, parseMonth.getValue(), 1)
                 .atStartOfDay(ZoneOffset.UTC)
