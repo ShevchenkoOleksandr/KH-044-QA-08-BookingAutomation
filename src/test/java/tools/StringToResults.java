@@ -8,19 +8,8 @@ import java.util.regex.Pattern;
 
 public class StringToResults {
 
-    public static void main(String[] args) {
 
-        String dataIn = "2022-08-01";
-        String dataOut = "2022-07-10";
-
-        System.out.println("2022-07-10: "+monthToMills(dataOut));
-        System.out.println("2022-07-10: "+daysToMills(dataOut));
-        System.out.println("Kraków: 345 cars available "+stringToLocation("Kraków: 345 cars available"));
-        System.out.println("Kraków: 345 cars available "+stringToResults("Kraków:  cars available"));
-        System.out.println(stringToDate("Mon, 10 Oct 2022, 10:00"));
-    }
-
-    public static String monthToMills(String date){
+    public static String monthToMills(String date) {
         Month parseMonth = LocalDate.parse(date).getMonth();
         int parseYear = LocalDate.parse(date).getYear();
 
@@ -28,9 +17,10 @@ public class StringToResults {
                 .atStartOfDay(ZoneOffset.UTC)
                 .toInstant()
                 .toEpochMilli();
-        return "M"+idInMills;
+        return "M" + idInMills;
     }
-    public static String daysToMills (String date){
+
+    public static String daysToMills(String date) {
         long idInMills = LocalDate.parse(date)
                 .atStartOfDay(ZoneOffset.UTC)
                 .toInstant()
@@ -46,14 +36,15 @@ public class StringToResults {
         int days;
         if (m.find()) {
             temp = siteString.substring(m.start(), m.end());
-            if (temp.length()==11){
-                days=2;
-            }else days=1;
-            Months myMonth = Months.valueOf(temp.substring(days+1, days+4).toUpperCase());
-            return temp.substring(temp.length()-4) + "-" +myMonth.getNumOfMonth()+ "-" + temp.substring(0, days);
+            if (temp.length() == 11) {
+                days = 2;
+            } else days = 1;
+            Months myMonth = Months.valueOf(temp.substring(days + 1, days + 4).toUpperCase());
+            return temp.substring(temp.length() - 4) + "-" + myMonth.getNumOfMonth() + "-" + temp.substring(0, days);
         }
         return "";
     }
+
     public static String stringToLocation(String siteString) {
         for (int i = 0; i < siteString.length(); i++) {
             if (siteString.charAt(i) == ':') {
@@ -62,9 +53,10 @@ public class StringToResults {
         }
         return "";
     }
+
     public static int stringToResults(String siteString) {
         StringBuilder str = new StringBuilder();
-        int result=0;
+        int result = 0;
         char temp;
         for (int i = 0; i < siteString.length(); i++) {
             temp = siteString.charAt(i);
