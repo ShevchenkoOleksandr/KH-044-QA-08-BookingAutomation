@@ -36,7 +36,7 @@ public class FindFlightsTest extends BaseTestRunner{
                 .clickFreeSpaceForHideWhereToMenu();
     }
 
-    @Test(dataProvider = "citiesData", dataProviderClass = FlightsDataProvider.class)
+//    @Test(dataProvider = "citiesData", dataProviderClass = FlightsDataProvider.class)
     public void verifyOneWaySearch(String from, String to) {
         System.out.println(to + " " + from);
         flightsPage.clickSearchBtn();

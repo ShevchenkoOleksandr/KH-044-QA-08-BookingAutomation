@@ -43,10 +43,14 @@ public class StringToResults {
         Pattern p = Pattern.compile(pattern);
         Matcher m = p.matcher(siteString);
         String temp;
+        int days;
         if (m.find()) {
             temp = siteString.substring(m.start(), m.end());
-            Months myMonth = Months.valueOf(temp.substring(3, 6).toUpperCase());
-            return temp.substring(7) + "-" +myMonth.getNumOfMonth()+ "-" + temp.substring(0, 2);
+            if (temp.length()==11){
+                days=2;
+            }else days=1;
+            Months myMonth = Months.valueOf(temp.substring(days+1, days+4).toUpperCase());
+            return temp.substring(temp.length()-4) + "-" +myMonth.getNumOfMonth()+ "-" + temp.substring(0, days);
         }
         return "";
     }

@@ -12,8 +12,8 @@
         <maven.compiler.source>15</maven.compiler.source>
         <maven.compiler.target>15</maven.compiler.target>
         <allur.version>2.18.1</allur.version>
-        <aspectj.version>1.9.9.1</aspectj.version>
-        <maven.surefire.plugin.version>3.0.0-M5</maven.surefire.plugin.version>
+        <aspectj.version>1.9.8</aspectj.version>
+        <maven.surefire.plugin.version>2.22.2</maven.surefire.plugin.version>
     </properties>
 
     <dependencies>
@@ -60,8 +60,7 @@
                 <version>${maven.surefire.plugin.version}</version>
                 <configuration>
                     <argLine>
-                        -javaagent:"${settings.localRepository}
-                        /org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
+                        -javaagent:${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar
                     </argLine>
                     <systemProperties>
                         <property>

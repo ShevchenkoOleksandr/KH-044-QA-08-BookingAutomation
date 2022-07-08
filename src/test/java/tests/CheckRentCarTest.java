@@ -1,6 +1,7 @@
 package tests;
 import data.providers.RentCarDataProvider;
 import io.qameta.allure.Description;
+import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import pages.HomePage;
 import org.testng.annotations.BeforeMethod;
@@ -12,20 +13,21 @@ import static data.PagesUrl.Urls.HOME_PAGE_URL;
 public class CheckRentCarTest extends BaseTestRunner{
     HomePage homePage;
 
-    @Parameters({"USD", "en-gb"})
+
+//    @Parameters({"USD", "en-gb"})
     @BeforeMethod(alwaysRun = true)
-    public void setUp(String currency, String language) {
+    public void setUp() {
         openPage(HOME_PAGE_URL);
         homePage = new HomePage(driver);
         homePage = homePage.acceptCookies()
             .clickCurrencyButton()
-            .switchCurrency(currency)
-            .checkCurrency(currency)
+            .switchCurrency("USD")
+            .checkCurrency("USD")
             .clickLanguageButton()
-            .switchLanguage(language);
+            .switchLanguage("en-gb");
 }
 
-    @Description("Check possibility to search cars for rent by city name")
+  @Description("Check possibility to search cars for rent by city name")
     @Test(description = "rent a car",
             dataProvider = "orderData",
             dataProviderClass = RentCarDataProvider.class)

@@ -38,7 +38,7 @@ public abstract class BaseTestRunner {
 
     @AfterClass(alwaysRun = true)
     public void afterClass() {
-        driver.quit();
+//        driver.quit();
     }
 
 }

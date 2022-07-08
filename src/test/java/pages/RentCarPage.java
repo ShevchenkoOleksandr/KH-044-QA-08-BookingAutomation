@@ -45,7 +45,7 @@ public class RentCarPage extends BasePage {
         return this;
     }
 
-    @Step("Enter city name")
+   @Step("Enter city name")
     public RentCarPage setNewCity(String city) {
         getCityField().sendKeys(city);
         setWait(2000);
@@ -69,7 +69,6 @@ public class RentCarPage extends BasePage {
         setWait(2000);
         return calendarInOut;
     }
-
     @Step("Select CheckInDate")
     public RentCarPage setCheckInDate(String checkInDate) {
         openCheckIn()
@@ -81,7 +80,7 @@ public class RentCarPage extends BasePage {
         return this;
     }
 
-    @Step("Select CheckOutDate")
+   @Step("Select CheckOutDate")
     public RentCarPage setCheckOutDate(String checkOutDate) {
         openCheckOut()
                 .initElementsOut()
@@ -97,7 +96,7 @@ public class RentCarPage extends BasePage {
         return this;
     }
 
-    @Step("Click on SearchButton")
+   @Step("Click on SearchButton")
     public ResultsPage clickSearchButton (){
         searchButton.click();
         return new ResultsPage(driver);

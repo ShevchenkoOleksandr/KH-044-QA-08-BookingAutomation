@@ -89,6 +89,7 @@ public class HomePage extends BasePage {
         return this;
     }
 
+    @Step("Goto RentCarPage")
     public RentCarPage gotoRentCarPage() {
         getRentCarButton().click();
         setWait(2000);
@@ -107,11 +108,13 @@ public class HomePage extends BasePage {
         getLanguageDropDown().setNewLanguage(newLanguage);
         return new HomePage(driver);
     }
+
     @Step("Check Actual Currency")
     public HomePage checkCurrency(String dueCurrency) {
         Assert.assertEquals(getCurrencyText().getText(), dueCurrency);
         return this;
     }
+
     @Step("Accept Cookies if needed")
     public HomePage acceptCookies() {
         if (isAcceptCookiesButton()) {
