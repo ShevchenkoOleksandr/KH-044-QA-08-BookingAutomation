@@ -29,6 +29,7 @@ public class CalendarCheckInOut {
                 "div.c2-button.c2-button-further span"));
         return this;
     }
+
     public CalendarCheckInOut searchMonth(String idMonth) {
         while (!boxCalendar.findElement(By.cssSelector("div[data-id='" + idMonth + "']")).isDisplayed()) {
             upButton.click();
@@ -38,6 +39,6 @@ public class CalendarCheckInOut {
     }
 
     public void setDay(String idDays) {
-        month.findElement(By.cssSelector("table tbody tr td[data-id='"+idDays+"']")).click();
+        month.findElement(By.cssSelector("table tbody tr td[data-id='" + idDays + "']")).click();
     }
 }
