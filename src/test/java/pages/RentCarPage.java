@@ -1,7 +1,7 @@
 package pages;
 
-import components.ListCities;
 import components.CalendarCheckInOut;
+import components.ListCities;
 import tools.StringToResults;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;

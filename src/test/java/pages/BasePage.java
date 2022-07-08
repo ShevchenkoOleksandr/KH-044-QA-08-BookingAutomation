@@ -5,10 +5,16 @@ import components.LanguageDropDown;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
+
+import static data.Constants.TimeoutVariable.EXPLICIT_WAIT_SECONDS;
 
 
-public class BasePage {
+public abstract class BasePage {
     protected WebDriver driver;
+    protected WebDriverWait wait;
 
     private WebElement currencyButton;
     private WebElement currencyText;
@@ -21,8 +27,8 @@ public class BasePage {
 
     public BasePage(WebDriver driver) {
         this.driver = driver;
+        this.wait = new WebDriverWait(this.driver, Duration.ofSeconds(EXPLICIT_WAIT_SECONDS));
         initElements();
-
     }
 
     private void initElements() {
@@ -67,7 +73,11 @@ public class BasePage {
 
     //cookieButton
     public boolean isAcceptCookiesButton() {
-        return driver.findElement(acceptCookiesButton).isDisplayed();
+        try {
+            return driver.findElement(acceptCookiesButton).isDisplayed();
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     public void clickCookieButton() {
