@@ -33,37 +33,30 @@ public class HomePage extends BasePage {
         languageDropDown = new LanguageDropDown(driver);
     }
 
-    // currencyButton
     public WebElement getCurrencyButton() {
         return currencyButton;
     }
 
-    // currencyText
     public WebElement getCurrencyText() {
         return currencyText;
     }
 
-    // languageButton
     public WebElement getLanguageButton() {
         return languageButton;
     }
 
-    // rentCarButton
     public WebElement getRentCarButton() {
         return rentCarButton;
     }
 
-    //currencyDropDown
     public CurrencyDropDown getCurrencyDropDown() {
         return currencyDropDown;
     }
 
-    //languageDropDown
     public LanguageDropDown getLanguageDropDown() {
         return languageDropDown;
     }
 
-    //cookieButton
     public boolean isAcceptCookiesButton() {
         try {
             return driver.findElement(acceptCookiesButton).isDisplayed();
@@ -76,13 +69,13 @@ public class HomePage extends BasePage {
         driver.findElement(acceptCookiesButton).click();
         setWait(2000);
     }
-
+    @Step("Click on CurrencyButton")
     public HomePage clickCurrencyButton() {
         getCurrencyButton().click();
         setWait(2000);
         return this;
     }
-
+    @Step("Click on LanguageButton")
     public HomePage clickLanguageButton() {
         getLanguageButton().click();
         setWait(2000);

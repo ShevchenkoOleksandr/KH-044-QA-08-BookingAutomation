@@ -12,7 +12,6 @@ public class CurrencyDropDown {
         this.driver = driver;
     }
 
-    //setNewCurrency
     private WebElement getSearchCurrency(String newCurrency) {
         searchCurrency = driver.findElement(By.xpath("//div[@class='bui-modal__inner']" +
                 "//div[@class='bui-traveller-header__currency'] [contains(text(),newCurrency)]"));

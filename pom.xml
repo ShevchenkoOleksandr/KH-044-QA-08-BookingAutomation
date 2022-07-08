@@ -62,6 +62,13 @@
                     <argLine>
                         -javaagent:${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar
                     </argLine>
+                    <properties>
+                        <property>
+                            <name>listener</name>
+                            <value>io.qameta.allure.testng.AllureTestNg</value>
+                        </property>
+                    </properties>
+
                     <systemProperties>
                         <property>
                             <name>allure.results.directory</name>
@@ -79,13 +86,15 @@
                 </dependencies>
             </plugin>
             <plugin>
-                    <groupId>io.qameta.allure</groupId>
-                    <artifactId>allure-maven</artifactId>
-                    <version>2.9</version>
-                    <configuration>
-                        <reportVersion>2.6.0</reportVersion>
-                    </configuration>
+                <groupId>io.qameta.allure</groupId>
+                <artifactId>allure-maven</artifactId>
+                <version>2.11.2</version>
+                <configuration>
+                    <reportVersion>2.14.0</reportVersion>
+                    <installDirectory>${project.build.directory}</installDirectory>
+                </configuration>
             </plugin>
+
         </plugins>
     </build>
 

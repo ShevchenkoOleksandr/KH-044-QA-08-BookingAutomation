@@ -1,8 +1,6 @@
 package tests;
 import data.providers.RentCarDataProvider;
 import io.qameta.allure.Description;
-import org.testng.annotations.Optional;
-import org.testng.annotations.Parameters;
 import pages.HomePage;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -13,8 +11,6 @@ import static data.PagesUrl.Urls.HOME_PAGE_URL;
 public class CheckRentCarTest extends BaseTestRunner{
     HomePage homePage;
 
-
-//    @Parameters({"USD", "en-gb"})
     @BeforeMethod(alwaysRun = true)
     public void setUp() {
         openPage(HOME_PAGE_URL);
@@ -43,6 +39,5 @@ public class CheckRentCarTest extends BaseTestRunner{
                 .checkLocations(location, location)
                 .checkDates(checkInDate, checkOutDate)
                 .checkCountCars();
-
     }
 }

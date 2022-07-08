@@ -33,7 +33,6 @@ public class RentCarPage extends BasePage {
         calendarInOut = new CalendarCheckInOut(driver);
     }
 
-    //cityField
     public WebElement getCityField() {
         return cityField;
     }

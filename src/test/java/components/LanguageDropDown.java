@@ -17,12 +17,10 @@ public class LanguageDropDown {
 
     }
 
-    //setNewLanguage
     private WebElement getSearchLanguage(String newLanguage) {
-        searchLanguage = driver.findElement(By.cssSelector("a[hreflang *='"+newLanguage+"']"));
+        searchLanguage = driver.findElement(By.cssSelector("a[hreflang *='" + newLanguage + "']"));
         return searchLanguage;
     }
-
 
     public void setNewLanguage(String newLanguage) {
         getSearchLanguage(newLanguage).click();
