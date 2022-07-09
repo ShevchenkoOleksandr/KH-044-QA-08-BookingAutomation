@@ -13,7 +13,7 @@ import java.util.List;
 import static data.PagesUrl.Urls.FLIGHTS_PAGE_URL;
 
 
-public class FindFlightsTest extends BaseTestRunner{
+public class FindFlightsTest extends BaseTestRunner {
 
     FlightsPage flightsPage;
 
@@ -23,25 +23,20 @@ public class FindFlightsTest extends BaseTestRunner{
         flightsPage = new FlightsPage(driver);
     }
 
-    @BeforeMethod
-    public void fillFieldsOneWaySearch() throws InterruptedException {
+    @Test(dataProvider = "citiesData", dataProviderClass = FlightsDataProvider.class)
+    public void verifyOneWaySearch(String whereFrom, String whereTo) {
         flightsPage.choseOneWay()
                 .activateWhereFromInput()
                 .clearWhereFromSelected()
-                .enterWhereFrom("Barcelona")
+                .enterWhereFrom(whereFrom)
                 .selectAllFromProposeList()
                 .activateWhereToInput()
-                .enterWhereTo("Milan")
+                .enterWhereTo(whereTo)
                 .selectAllFromProposeList()
-                .clickFreeSpaceForHideWhereToMenu();
-    }
+                .clickFreeSpaceForHideWhereToMenu()
+                .clickSearchBtn();
 
-    @Test(dataProvider = "citiesData", dataProviderClass = FlightsDataProvider.class)
-    public void verifyOneWaySearch(String from, String to) {
-        System.out.println(to + " " + from);
-        flightsPage.clickSearchBtn();
         List<WebElement> searchResultCards = flightsPage.getSearchResults();
         Assert.assertFalse(searchResultCards.isEmpty(), "Search result flight cards not found");
     }
-
 }
