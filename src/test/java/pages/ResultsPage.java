@@ -74,11 +74,4 @@ public class ResultsPage extends BasePage {
     }
 
 
-    private void waitPageRefresh () {
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(0));
-        (new WebDriverWait(driver, Duration.ofSeconds(10)))
-                .until(webDriver -> ((JavascriptExecutor)webDriver))
-                .executeScript("return document.readyState")
-                .equals("complete");
-        }
 }
