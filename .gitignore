@@ -1,5 +1,5 @@
-*.idea*
-/target
-/target/*
-/allure-results
-/allure-results/*
+*.idea/*
+*target/
+*target/*
+*allure-results/
+*allure-results/*
