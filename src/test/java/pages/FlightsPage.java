@@ -37,7 +37,7 @@ public class FlightsPage extends BasePage {
         return this;
     }
 
-    public FlightsPage enterWhereFrom(String cityFrom) throws InterruptedException {
+    public FlightsPage enterWhereFrom(String cityFrom) {
         WebElement inputFrom = driver.findElement(inputWhereFrom);
         inputFrom.click();
         inputFrom.clear();
@@ -51,7 +51,7 @@ public class FlightsPage extends BasePage {
         return this;
     }
 
-    public FlightsPage enterWhereTo(String cityTo) throws InterruptedException {
+    public FlightsPage enterWhereTo(String cityTo) {
         WebElement inputTo = driver.findElement(inputWhereTo);
         Actions action = new Actions(driver);
         action.moveToElement(inputTo)
@@ -97,7 +97,6 @@ public class FlightsPage extends BasePage {
         List<WebElement> searchResults = driver.findElements(searchResultCard);
         return searchResults;
     }
-
 
 
 }

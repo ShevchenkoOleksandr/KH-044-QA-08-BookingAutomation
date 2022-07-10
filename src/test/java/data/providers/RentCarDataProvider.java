@@ -9,7 +9,7 @@ public class RentCarDataProvider {
                 {"Kraków",
                         "Kraków, Lesser Poland, Poland",
                         "2022-10-10",
-                        "2022-12-2"
+                        "2022-12-02"
                 }// {location, fullCityName, checkInDate, checkOutDate}
         };
     }

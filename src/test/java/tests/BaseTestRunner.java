@@ -10,11 +10,12 @@ import org.testng.annotations.BeforeSuite;
 import java.time.Duration;
 
 import static data.Constants.TimeoutVariable.IMPLICIT_WAIT_SECONDS;
+import static data.PagesUrl.Urls.HOME_PAGE_URL;
 
 public abstract class BaseTestRunner {
     protected WebDriver driver;
 
-    public void openPage(String url) {
+    public void openPage(String url){
         driver.get(url);
     }
 
