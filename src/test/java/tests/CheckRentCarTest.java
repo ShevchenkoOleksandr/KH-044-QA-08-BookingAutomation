@@ -18,7 +18,6 @@ public class CheckRentCarTest extends BaseTestRunner{
         homePage = homePage.acceptCookies()
             .clickCurrencyButton()
             .switchCurrency("USD")
-            .checkCurrency("USD")
             .clickLanguageButton()
             .switchLanguage("en-gb");
 }
