@@ -13,6 +13,7 @@ hs_err_pid*
 ## Maven
 ##############################
 target/
+*target**
 pom.xml.tag
 pom.xml.releaseBackup
 pom.xml.versionsBackup
@@ -85,3 +86,4 @@ nb-configuration.xml
 
 # Allure
 allure-report
+allure-report/*

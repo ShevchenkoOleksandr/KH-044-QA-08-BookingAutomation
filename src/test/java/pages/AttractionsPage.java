@@ -7,12 +7,12 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.testng.Assert;
 import tools.PriceFilterHelper;
 
 import java.time.Duration;
 import java.util.List;
 
+import static data.Constants.PagesVariable.MAX_EXPLORE_PAGES;
 import static data.Constants.TimeoutVariable.IMPLICIT_WAIT_SECONDS;
 
 public class AttractionsPage extends BasePage {
@@ -21,6 +21,7 @@ public class AttractionsPage extends BasePage {
         super(driver);
     }
 
+    protected int currentPageNumber = 1;
     protected PriceFilterHelper priceFilterHelper;
     protected AttractionsPriceFilter priceFilter;
     protected By textInput = By.cssSelector("form[action^='/attractions/searchresults'] input");
@@ -28,6 +29,8 @@ public class AttractionsPage extends BasePage {
     protected By showAllBtn = By.cssSelector("a[href*='sort_by=attr_book_score']");
     protected By resultCardPrice = By.cssSelector("[data-testid='card'] [style*='text-align: right']");
     protected By searchBarResult = By.cssSelector("[data-testid='search-bar-result']");
+    protected By prevNextPageBtn = By.xpath("//nav//button//*[name()='svg'][@data-rtl-flip='true']/ancestor::button");
+    protected By resultCard = By.cssSelector("[data-testid='card']");
 
     protected WebElement searchSubmitBtn;
 
@@ -72,17 +75,45 @@ public class AttractionsPage extends BasePage {
     @Step("Compare selected price filters with prices of result")
     public boolean compareSelectedPriceWithResults() {
         List<WebElement> resultPrices = driver.findElements(resultCardPrice);
+        priceFilterHelper.compareSelectedPriceWithResults(resultPrices);
+        if (gotoNextResultsPage()) {
+            compareSelectedPriceWithResults();
+        }
+        return true;
+    }
 
-        for (WebElement cardPriceElement : resultPrices) {
-            if (!cardPriceElement.isDisplayed()) {
-                continue;
-            }
-            float cardPrice = priceFilterHelper.parsePriceFromResultCard(cardPriceElement.getText());
-            if (!priceFilterHelper.compareWithPriceDiapason(cardPrice)) {
-                Assert.fail("Current price: " + cardPrice + " not in diapason "
-                        + priceFilterHelper.getDiapasonString());
-                break;
-            }
+    @Step("Go to the next page of search results")
+    protected boolean gotoNextResultsPage() {
+        if (currentPageNumber < MAX_EXPLORE_PAGES) {
+            currentPageNumber++;
+        } else {
+            return false;
+        }
+        List<WebElement> navButtons = driver.findElements(prevNextPageBtn);
+        if (navButtons.size() < 2) return false; //nav buttons not found
+        WebElement nextBtn = navButtons.get(1);
+        WebElement resultCardBox = driver.findElement(resultCard);
+        if (nextBtn.isEnabled()) {
+            nextBtn.click();
+            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(0));
+            wait.until(ExpectedConditions.stalenessOf(resultCardBox));
+            wait.until(ExpectedConditions.presenceOfElementLocated(resultCard));
+            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(IMPLICIT_WAIT_SECONDS));
+            return true;
+        }
+        return false;
+    }
+
+    public AttractionsPage choseOrderByPrice() {
+        driver.get(driver.getCurrentUrl() + "?sort_by=lowest_price");
+        return this;
+    }
+
+    public boolean verifyMinToMaxPriceOrder() {
+        List<WebElement> resultPrices = driver.findElements(resultCardPrice);
+        PriceFilterHelper.verifyMinToMaxPriceOrder(resultPrices);
+        if (gotoNextResultsPage()) {
+            verifyMinToMaxPriceOrder();
         }
         return true;
     }
