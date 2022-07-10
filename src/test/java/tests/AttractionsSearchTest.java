@@ -19,7 +19,7 @@ public class AttractionsSearchTest extends BaseTestRunner {
 
     @Description("Compare prices of search result with selected price filters")
     @Test(dataProvider = "searchStrAndPriceFilter", dataProviderClass = AttractionsDataProvider.class)
-    public void verifySearchResult(String cityName, Boolean[] activeCheckboxes) {
+    public void verifyPriceFilter(String cityName, Boolean[] activeCheckboxes) {
         openPage(ATTRACTIONS_PAGE_URL);
         attractionsPage.enterSearchQuery(cityName)
                 .clickSearchBtn()
@@ -27,5 +27,17 @@ public class AttractionsSearchTest extends BaseTestRunner {
                 .selectPriceFilter(activeCheckboxes);
         Assert.assertTrue(attractionsPage.compareSelectedPriceWithResults(),
                 "Compare chosen and result prices failed");
+    }
+
+    @Description("Verify correct sorting of search results by price")
+    @Test(dataProvider = "searchString", dataProviderClass = AttractionsDataProvider.class)
+    public void verifySortByPrice(String cityName) {
+        openPage(ATTRACTIONS_PAGE_URL);
+        attractionsPage.enterSearchQuery(cityName)
+                .clickSearchBtn()
+                .clickShowAllResults()
+                .choseOrderByPrice();
+        Assert.assertTrue(attractionsPage.verifyMinToMaxPriceOrder(),
+                "Verify search result order by price failed");
     }
 }

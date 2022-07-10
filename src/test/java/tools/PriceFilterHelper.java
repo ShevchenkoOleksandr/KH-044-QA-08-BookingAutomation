@@ -1,5 +1,10 @@
 package tools;
 
+import org.openqa.selenium.WebElement;
+import org.testng.Assert;
+
+import java.util.List;
+
 public class PriceFilterHelper {
     private Integer minDiapasonPrice = null;
     private Integer maxDiapasonPrice = null;
@@ -38,7 +43,7 @@ public class PriceFilterHelper {
         }
     }
 
-    public float parsePriceFromResultCard(String priceStr) {
+    public static float parsePriceFromResultCard(String priceStr) {
         priceStr = priceStr.replace(",", ".");
         priceStr = priceStr.replaceAll("[^\\d\\.]", "");
         float price = Float.parseFloat(priceStr);
@@ -53,6 +58,36 @@ public class PriceFilterHelper {
 
     public boolean compareWithPriceDiapason(int price) {
         return compareWithPriceDiapason((float) price);
+    }
+
+    public static void verifyMinToMaxPriceOrder(List<WebElement> cardPrices) {
+        float previousPrice = 0, currentPrice = 0;
+        for (WebElement cardPriceElement : cardPrices) {
+            if (!cardPriceElement.isDisplayed()) {
+                continue;
+            }
+            currentPrice = PriceFilterHelper.parsePriceFromResultCard(cardPriceElement.getText());
+            if (currentPrice < previousPrice) {
+                Assert.fail("Current price could be more or equal Previous price: " +
+                        "Previous Prise - " + previousPrice + " | " +
+                        "Current Price - " + currentPrice);
+            }
+            previousPrice = currentPrice;
+        }
+    }
+
+    public void compareSelectedPriceWithResults(List<WebElement> cardPrices) {
+        for (WebElement cardPriceElement : cardPrices) {
+            if (!cardPriceElement.isDisplayed()) {
+                continue;
+            }
+            float cardPrice = parsePriceFromResultCard(cardPriceElement.getText());
+            if (!compareWithPriceDiapason(cardPrice)) {
+                Assert.fail("Current price: " + cardPrice + " not in diapason "
+                        + getDiapasonString());
+                break;
+            }
+        }
     }
 
 

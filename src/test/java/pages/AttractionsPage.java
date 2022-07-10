@@ -7,7 +7,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.testng.Assert;
 import tools.PriceFilterHelper;
 
 import java.time.Duration;
@@ -76,18 +75,7 @@ public class AttractionsPage extends BasePage {
     @Step("Compare selected price filters with prices of result")
     public boolean compareSelectedPriceWithResults() {
         List<WebElement> resultPrices = driver.findElements(resultCardPrice);
-
-        for (WebElement cardPriceElement : resultPrices) {
-            if (!cardPriceElement.isDisplayed()) {
-                continue;
-            }
-            float cardPrice = priceFilterHelper.parsePriceFromResultCard(cardPriceElement.getText());
-            if (!priceFilterHelper.compareWithPriceDiapason(cardPrice)) {
-                Assert.fail("Current price: " + cardPrice + " not in diapason "
-                        + priceFilterHelper.getDiapasonString());
-                break;
-            }
-        }
+        priceFilterHelper.compareSelectedPriceWithResults(resultPrices);
         if (gotoNextResultsPage()) {
             compareSelectedPriceWithResults();
         }
@@ -119,5 +107,14 @@ public class AttractionsPage extends BasePage {
     public AttractionsPage choseOrderByPrice() {
         driver.get(driver.getCurrentUrl() + "?sort_by=lowest_price");
         return this;
+    }
+
+    public boolean verifyMinToMaxPriceOrder() {
+        List<WebElement> resultPrices = driver.findElements(resultCardPrice);
+        PriceFilterHelper.verifyMinToMaxPriceOrder(resultPrices);
+        if (gotoNextResultsPage()) {
+            verifyMinToMaxPriceOrder();
+        }
+        return true;
     }
 }
