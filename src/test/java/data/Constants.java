@@ -5,4 +5,8 @@ public class Constants {
         public static final int IMPLICIT_WAIT_SECONDS = 10; //seconds
         public static final int EXPLICIT_WAIT_SECONDS = 20; //seconds
     }
+
+    public static class PagesVariable {
+        public static final int MAX_EXPLORE_PAGES = 3; //Limit of search pages that will be explored
+    }
 }

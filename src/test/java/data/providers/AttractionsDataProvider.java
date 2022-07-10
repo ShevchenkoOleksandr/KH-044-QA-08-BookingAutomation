@@ -18,4 +18,12 @@ public class AttractionsDataProvider {
                 {city, new Boolean[]{false, false, false, true, true}}
         };
     }
+
+    @DataProvider(name = "searchString")
+    public static Object[][] searchString() {
+        String city = "Paris";
+        return new Object[][]{
+                {"Paris"}
+        };
+    }
 }
