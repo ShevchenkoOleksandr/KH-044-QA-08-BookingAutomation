@@ -97,7 +97,6 @@ public class AttractionsPage extends BasePage {
     @Step("Go to the next page of search results")
     protected boolean gotoNextResultsPage() {
         if (currentPageNumber < MAX_EXPLORE_PAGES) {
-            System.out.println(currentPageNumber);
             currentPageNumber++;
         } else {
             return false;
