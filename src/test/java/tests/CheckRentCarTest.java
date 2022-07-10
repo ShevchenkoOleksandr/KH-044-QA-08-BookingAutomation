@@ -23,11 +23,14 @@ public class CheckRentCarTest extends BaseTestRunner{
             .switchLanguage("en-gb");
 }
 
-  @Description("Check possibility to search cars for rent by city name")
+    @Description("Check possibility to search cars for rent by city name")
     @Test(description = "rent a car",
             dataProvider = "orderData",
             dataProviderClass = RentCarDataProvider.class)
-    public void rentCar(String location, String fullCityName, String checkInDate, String checkOutDate) {
+    public void rentCar(String location,
+                        String fullCityName,
+                        String checkInDate,
+                        String checkOutDate) {
         homePage.gotoRentCarPage()
                 .scrollToCityField()
                 .clickCityField()
