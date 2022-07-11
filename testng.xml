@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+    <test verbose="2" preserve-order="true" name="C:/KH-044-QA-08-BookingAutomation">
+        <classes>
+            <class name="tests.ChangeLanguageTest">
+                <methods>
+                    <include name="languageSwitch"/>
+                </methods>
+            </class>
+
+            <class name="tests.CheckCurrencyTest">
+                <methods>
+                    <include name="changeCurrency"/>
+                </methods>
+            </class>
+            <class name="tests.AttractionsSearchTest">
+                <methods>
+                    <include name="verifyPriceFilter"/>
+                    <include name="verifySortByPrice"/>
+                </methods>
+            </class>
+            <class name="tests.FindFlightsTest">
+                <methods>
+                    <include name="verifyOneWaySearch"/>
+                </methods>
+            </class>
+            <class name="tests.CheckRentCarTest">
+                <methods>
+                    <include name="rentCar"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
