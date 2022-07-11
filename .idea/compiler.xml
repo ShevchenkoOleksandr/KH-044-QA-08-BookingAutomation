@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="BookingAT" />
+        <module name="KH-044-QA-08-BookingAutomation" />
         <module name="Demo" />
       </profile>
     </annotationProcessing>

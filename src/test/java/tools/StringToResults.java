@@ -8,7 +8,6 @@ import java.util.regex.Pattern;
 
 public class StringToResults {
 
-
     public static String monthToMills(String date) {
         Month parseMonth = LocalDate.parse(date).getMonth();
         int parseYear = LocalDate.parse(date).getYear();
@@ -34,13 +33,19 @@ public class StringToResults {
         Matcher m = p.matcher(siteString);
         String temp;
         int days;
+        String day;
         if (m.find()) {
             temp = siteString.substring(m.start(), m.end());
             if (temp.length() == 11) {
                 days = 2;
-            } else days = 1;
+                day = temp.substring(0, days);
+
+            } else {
+                days = 1;
+                day = "0"+temp.substring(0, days);
+            }
             Months myMonth = Months.valueOf(temp.substring(days + 1, days + 4).toUpperCase());
-            return temp.substring(temp.length() - 4) + "-" + myMonth.getNumOfMonth() + "-" + temp.substring(0, days);
+            return temp.substring(temp.length() - 4) + "-" + myMonth.getNumOfMonth() + "-" + day;
         }
         return "";
     }

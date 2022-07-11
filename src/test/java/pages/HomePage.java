@@ -17,6 +17,11 @@ public class HomePage extends BasePage {
     private LanguageDropDown languageDropDown;
 
     private final By acceptCookiesButton = By.cssSelector("button#onetrust-accept-btn-handler");
+    private final By rentCarBtn = By.cssSelector("a[href *='/cars/index']");
+    private final By flightsButton = By.xpath("//a[@data-decider-header='flights']");
+    private final By staysButton = By.xpath("//a[@class='bui-tab__link bui-tab__link--selected']");
+    private final By attractionsButton = By.xpath("//a[@data-decider-header='attractions']");
+    private final By airportTaxiButton = By.cssSelector("a[href *='/taxi/index']");
 
     public HomePage(WebDriver driver) {
         super(driver);
@@ -116,4 +121,30 @@ public class HomePage extends BasePage {
         return this;
     }
 
+    public HomePage checkButtonsLanguage() {
+        setWait(2000);
+
+        String deStays = "Aufenthalte";
+        String deFlights = "Flüge";
+        String deCarRent = "Mietwagen";
+        String deAttractions = "Attraktionen";
+        String deAirportTaxi = "Flughafentaxis";
+
+        WebElement staysBtn = driver.findElement(staysButton);
+        Assert.assertEquals(staysBtn.getText(), deStays);
+
+        WebElement flightsBtn = driver.findElement(flightsButton);
+        Assert.assertEquals(flightsBtn.getText(), deFlights);
+
+        WebElement carRentBtn = driver.findElement(rentCarBtn);
+        Assert.assertEquals(carRentBtn.getText(), deCarRent);
+
+        WebElement attractionsBtn = driver.findElement(attractionsButton);
+        Assert.assertEquals(attractionsBtn.getText(), deAttractions);
+
+        WebElement airportTaxiBtn = driver.findElement(airportTaxiButton);
+        Assert.assertEquals(airportTaxiBtn.getText(), deAirportTaxi);
+
+        return this;
+    }
 }
