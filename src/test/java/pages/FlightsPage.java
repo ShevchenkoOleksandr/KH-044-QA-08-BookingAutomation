@@ -38,6 +38,7 @@ public class FlightsPage extends BasePage {
     }
 
     public FlightsPage flightBtn() {
+        setWait(5000);
         driver.findElement(flightsButton).click();
 
         return this;
