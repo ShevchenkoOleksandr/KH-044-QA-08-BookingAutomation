@@ -5,6 +5,8 @@ import org.testng.Assert;
 
 import java.util.List;
 
+import static data.Constants.PagesVariable.COMPARE_PRICE_CORRECTED_PERCENT;
+
 public class PriceFilterHelper {
     private Integer minDiapasonPrice = null;
     private Integer maxDiapasonPrice = null;
@@ -50,16 +52,6 @@ public class PriceFilterHelper {
         return price;
     }
 
-    public boolean compareWithPriceDiapason(float price) {
-        if (price >= minDiapasonPrice && price <= maxDiapasonPrice) {
-            return true;
-        } else return false;
-    }
-
-    public boolean compareWithPriceDiapason(int price) {
-        return compareWithPriceDiapason((float) price);
-    }
-
     public static void verifyMinToMaxPriceOrder(List<WebElement> cardPrices) {
         float previousPrice = 0, currentPrice = 0;
         for (WebElement cardPriceElement : cardPrices) {
@@ -67,10 +59,11 @@ public class PriceFilterHelper {
                 continue;
             }
             currentPrice = PriceFilterHelper.parsePriceFromResultCard(cardPriceElement.getText());
-            if (currentPrice < previousPrice) {
+            if (currentPrice < MathPercent.subPercent(previousPrice, COMPARE_PRICE_CORRECTED_PERCENT)) {
                 Assert.fail("Current price could be more or equal Previous price: " +
                         "Previous Prise - " + previousPrice + " | " +
-                        "Current Price - " + currentPrice);
+                        "Current Price - " + currentPrice
+                        + " (Corrected percent - " + COMPARE_PRICE_CORRECTED_PERCENT + ") ");
             }
             previousPrice = currentPrice;
         }
@@ -82,13 +75,12 @@ public class PriceFilterHelper {
                 continue;
             }
             float cardPrice = parsePriceFromResultCard(cardPriceElement.getText());
-            if (!compareWithPriceDiapason(cardPrice)) {
+            if (MathPercent.addPercent(cardPrice, COMPARE_PRICE_CORRECTED_PERCENT) < minDiapasonPrice
+                    || MathPercent.subPercent(cardPrice, COMPARE_PRICE_CORRECTED_PERCENT) > maxDiapasonPrice) {
                 Assert.fail("Current price: " + cardPrice + " not in diapason "
-                        + getDiapasonString());
-                break;
+                        + getDiapasonString()
+                        + " (Corrected percent - " + COMPARE_PRICE_CORRECTED_PERCENT + ") ");
             }
         }
     }
-
-
 }

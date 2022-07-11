@@ -9,5 +9,6 @@ public class Constants {
 
     public static class PagesVariable {
         public static final int MAX_EXPLORE_PAGES = 3; //Limit of search pages that will be explored
+        public static final int COMPARE_PRICE_CORRECTED_PERCENT = 2; //Percent to increase or decrease the price during compare
     }
 }
