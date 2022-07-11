@@ -26,14 +26,15 @@ public class CheckRentCarTest extends BaseTestRunner{
     @Test(description = "rent a car",
             dataProvider = "orderData",
             dataProviderClass = RentCarDataProvider.class)
-    public void rentCar(String location,
+    public void rentCar(String enterLocation,
+                        String location,
                         String fullCityName,
                         String checkInDate,
                         String checkOutDate) {
         homePage.gotoRentCarPage()
                 .scrollToCityField()
                 .clickCityField()
-                .setNewCity(location)
+                .setNewCity(enterLocation)
                 .selectCity(fullCityName)
                 .setCheckInDate(checkInDate)
                 .setCheckOutDate(checkOutDate)

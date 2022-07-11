@@ -21,7 +21,9 @@ public class AttractionsSearchTest extends BaseTestRunner {
     @Test(dataProvider = "searchStrAndPriceFilter", dataProviderClass = AttractionsDataProvider.class)
     public void verifyPriceFilter(String cityName, Boolean[] activeCheckboxes) {
         openPage(ATTRACTIONS_PAGE_URL);
-        attractionsPage.enterSearchQuery(cityName)
+        attractionsPage
+                .acceptCookies()
+                .enterSearchQuery(cityName)
                 .clickSearchBtn()
                 .clickShowAllResults()
                 .selectPriceFilter(activeCheckboxes)
@@ -33,7 +35,8 @@ public class AttractionsSearchTest extends BaseTestRunner {
     @Test(dataProvider = "searchString", dataProviderClass = AttractionsDataProvider.class)
     public void verifySortByPrice(String cityName) {
         openPage(ATTRACTIONS_PAGE_URL);
-        attractionsPage.enterSearchQuery(cityName)
+        attractionsPage
+                .enterSearchQuery(cityName)
                 .clickSearchBtn()
                 .clickShowAllResults()
                 .choseOrderByPrice()

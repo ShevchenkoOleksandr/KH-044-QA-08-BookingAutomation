@@ -36,7 +36,7 @@ public class AttractionsPriceFilter {
              i++) {
             WebElement currentPriceBox = selectPriceBlocks.get(i);
             WebElement resultCardBox = driver.findElement(resultCard);
-            if (activeCheckboxes[i] == true) {
+            if (activeCheckboxes[i]) {
                 currentPriceBox.click(); //click on this checkbox if it set in DataProvider
                 priceFilterHelper.parsePriceDiapasonStr(currentPriceBox.getText());
 

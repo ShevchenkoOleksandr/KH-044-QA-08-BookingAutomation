@@ -89,8 +89,8 @@ public class HomePage extends BasePage {
 
     @Step("Goto RentCarPage")
     public RentCarPage gotoRentCarPage() {
+        setWait(5000);
         getRentCarButton().click();
-        setWait(2000);
         return new RentCarPage(driver);
     }
 
@@ -125,16 +125,12 @@ public class HomePage extends BasePage {
         setWait(2000);
 
         String deStays = "Aufenthalte";
-        String deFlights = "Flüge";
         String deCarRent = "Mietwagen";
         String deAttractions = "Attraktionen";
         String deAirportTaxi = "Flughafentaxis";
 
         WebElement staysBtn = driver.findElement(staysButton);
         Assert.assertEquals(staysBtn.getText(), deStays);
-
-        WebElement flightsBtn = driver.findElement(flightsButton);
-        Assert.assertEquals(flightsBtn.getText(), deFlights);
 
         WebElement carRentBtn = driver.findElement(rentCarBtn);
         Assert.assertEquals(carRentBtn.getText(), deCarRent);

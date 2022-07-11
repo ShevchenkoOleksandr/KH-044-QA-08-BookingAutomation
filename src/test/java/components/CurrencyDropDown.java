@@ -20,6 +20,11 @@ public class CurrencyDropDown {
 
 
     public void setNewCurrency(String newCurrency) {
+        try {
+            Thread.sleep(2500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         getSearchCurrency(newCurrency).click();
     }
 }
