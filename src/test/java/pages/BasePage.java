@@ -11,6 +11,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
 import static data.Constants.TimeoutVariable.EXPLICIT_WAIT_SECONDS;
+import static data.Constants.TimeoutVariable.IMPLICIT_WAIT_SECONDS;
 
 
 public abstract class BasePage {
@@ -36,5 +37,6 @@ public abstract class BasePage {
                 .until(webDriver -> ((JavascriptExecutor)webDriver))
                 .executeScript("return document.readyState")
                 .equals("complete");
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(IMPLICIT_WAIT_SECONDS));
     }
 }
