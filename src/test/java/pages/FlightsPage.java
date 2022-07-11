@@ -45,7 +45,7 @@ public class FlightsPage extends BasePage {
     }
 
     public FlightsPage choseOneWay() {
-        setWait(2000);
+        setWait(2100);
         wait.until(ExpectedConditions.visibilityOfElementLocated(radioBtnOneWay)).click();
 
         return this;
