@@ -31,10 +31,30 @@ public class AttractionsPage extends BasePage {
     protected By searchBarResult = By.cssSelector("[data-testid='search-bar-result']");
     protected By prevNextPageBtn = By.xpath("//nav//button//*[name()='svg'][@data-rtl-flip='true']/ancestor::button");
     protected By resultCard = By.cssSelector("[data-testid='card']");
+    private final By acceptCookiesButton = By.cssSelector("button#onetrust-accept-btn-handler");
 
     protected WebElement searchSubmitBtn;
 
     protected Actions action = new Actions(driver);
+
+    public boolean isAcceptCookiesButton() {
+        try {
+            return driver.findElement(acceptCookiesButton).isDisplayed();
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public AttractionsPage acceptCookies() {
+        if (isAcceptCookiesButton()) {
+            clickCookieButton();
+        }
+        return this;
+    }
+    public void clickCookieButton() {
+        driver.findElement(acceptCookiesButton).click();
+        setWait(2000);
+    }
 
     @Step("Enter search query in field")
     public AttractionsPage enterSearchQuery(String query) {

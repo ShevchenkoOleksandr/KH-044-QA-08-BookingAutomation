@@ -97,6 +97,7 @@ public class RentCarPage extends BasePage {
 
    @Step("Click on SearchButton")
     public ResultsPage clickSearchButton (){
+       setWait(5000);
         searchButton.click();
         return new ResultsPage(driver);
     }

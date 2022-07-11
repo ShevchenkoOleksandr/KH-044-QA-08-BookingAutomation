@@ -25,7 +25,7 @@ public class FindFlightsTest extends BaseTestRunner {
     @Test(dataProvider = "citiesData", dataProviderClass = FlightsDataProvider.class)
     public void verifyOneWaySearch(String whereFrom, String whereTo) {
         flightsPage
-                .cookiesAccept()
+                .acceptCookies()
                 .flightBtn()
                 .choseOneWay()
                 .activateWhereFromInput()

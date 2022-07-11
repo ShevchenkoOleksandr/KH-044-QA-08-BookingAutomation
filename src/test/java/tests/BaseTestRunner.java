@@ -33,19 +33,17 @@ public abstract class BaseTestRunner {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(IMPLICIT_WAIT_SECONDS));
         driver.manage().window().maximize();
     }
-
     @AfterClass(alwaysRun = true)
     public void afterClass() {
         driver.quit();
     }
     @AfterTest
     public void clearCookiesAndLocalStorage (){
-        if(CLEAR_COOKIES_AND_STORAGE){
-            JavascriptExecutor javascriptExecutor =(JavascriptExecutor) driver;
-            driver.manage().deleteAllCookies();
-            javascriptExecutor.executeScript("window.sessionStorage.clear()");
-        }
+         if(CLEAR_COOKIES_AND_STORAGE){
+         JavascriptExecutor javascriptExecutor =(JavascriptExecutor) driver;
+         driver.manage().deleteAllCookies();
+          javascriptExecutor.executeScript("window.sessionStorage.clear()");
     }
 
-
+    }
 }

@@ -30,11 +30,23 @@ public class FlightsPage extends BasePage {
     private final By searchResultCard = By.cssSelector("[id^='flightcard']");
 
 
-    public FlightsPage cookiesAccept() {
-        WebElement acceptCookies = driver.findElement(acceptCookiesButton);
-        wait.until(ExpectedConditions.visibilityOf(acceptCookies)).click();
+    public boolean isAcceptCookiesButton() {
+        try {
+            return driver.findElement(acceptCookiesButton).isDisplayed();
+        } catch (Exception e) {
+            return false;
+        }
+    }
 
+    public FlightsPage acceptCookies() {
+        if (isAcceptCookiesButton()) {
+            clickCookieButton();
+        }
         return this;
+    }
+    public void clickCookieButton() {
+        driver.findElement(acceptCookiesButton).click();
+        setWait(2000);
     }
 
     public FlightsPage flightBtn() {
@@ -94,6 +106,7 @@ public class FlightsPage extends BasePage {
     }
 
     public FlightsPage selectAllFromProposeList() {
+        setWait(2500);
         List<WebElement> checkboxes = driver.findElements(checkboxInProposeResult);
         if (checkboxes.size() > 0) checkboxes.forEach(checkbox -> checkbox.click());
 
