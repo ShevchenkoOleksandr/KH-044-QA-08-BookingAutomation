@@ -73,13 +73,12 @@ public class AttractionsPage extends BasePage {
     }
 
     @Step("Compare selected price filters with prices of result")
-    public boolean compareSelectedPriceWithResults() {
+    public void compareSelectedPriceWithResults() {
         List<WebElement> resultPrices = driver.findElements(resultCardPrice);
         priceFilterHelper.compareSelectedPriceWithResults(resultPrices);
         if (gotoNextResultsPage()) {
             compareSelectedPriceWithResults();
         }
-        return true;
     }
 
     @Step("Go to the next page of search results")
@@ -109,12 +108,11 @@ public class AttractionsPage extends BasePage {
         return this;
     }
 
-    public boolean verifyMinToMaxPriceOrder() {
+    public void verifyMinToMaxPriceOrder() {
         List<WebElement> resultPrices = driver.findElements(resultCardPrice);
         PriceFilterHelper.verifyMinToMaxPriceOrder(resultPrices);
         if (gotoNextResultsPage()) {
             verifyMinToMaxPriceOrder();
         }
-        return true;
     }
 }

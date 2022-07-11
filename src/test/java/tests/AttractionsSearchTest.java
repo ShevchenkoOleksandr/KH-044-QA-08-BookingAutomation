@@ -24,9 +24,9 @@ public class AttractionsSearchTest extends BaseTestRunner {
         attractionsPage.enterSearchQuery(cityName)
                 .clickSearchBtn()
                 .clickShowAllResults()
-                .selectPriceFilter(activeCheckboxes);
-        Assert.assertTrue(attractionsPage.compareSelectedPriceWithResults(),
-                "Compare chosen and result prices failed");
+                .selectPriceFilter(activeCheckboxes)
+                .compareSelectedPriceWithResults();
+
     }
 
     @Description("Verify correct sorting of search results by price")
@@ -36,8 +36,7 @@ public class AttractionsSearchTest extends BaseTestRunner {
         attractionsPage.enterSearchQuery(cityName)
                 .clickSearchBtn()
                 .clickShowAllResults()
-                .choseOrderByPrice();
-        Assert.assertTrue(attractionsPage.verifyMinToMaxPriceOrder(),
-                "Verify search result order by price failed");
+                .choseOrderByPrice()
+                .verifyMinToMaxPriceOrder();
     }
 }

@@ -54,5 +54,4 @@ public class ResultsPage extends BasePage {
         return this;
     }
 
-
 }
