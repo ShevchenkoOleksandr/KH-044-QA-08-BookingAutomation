@@ -39,7 +39,7 @@ public class FlightsPage extends BasePage {
 
     public FlightsPage flightBtn() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(flightsButton)).click();
-
+        setWait(2000);
         return this;
     }
 
