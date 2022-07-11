@@ -38,15 +38,15 @@ public class FlightsPage extends BasePage {
     }
 
     public FlightsPage flightBtn() {
-        setWait(2500);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(flightsButton)).click();
+        driver.findElement(flightsButton).click();
 
         return this;
     }
 
     public FlightsPage choseOneWay() {
-        setWait(2100);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(radioBtnOneWay)).click();
+        setWait(4000);
+        WebElement radioBtn = driver.findElement(radioBtnOneWay);
+        wait.until(ExpectedConditions.visibilityOf(radioBtn)).click();
 
         return this;
     }
