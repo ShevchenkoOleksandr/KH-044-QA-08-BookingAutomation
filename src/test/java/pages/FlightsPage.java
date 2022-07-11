@@ -38,12 +38,14 @@ public class FlightsPage extends BasePage {
     }
 
     public FlightsPage flightBtn() {
+        setWait(2500);
         wait.until(ExpectedConditions.visibilityOfElementLocated(flightsButton)).click();
-        setWait(2000);
+
         return this;
     }
 
     public FlightsPage choseOneWay() {
+        setWait(2000);
         wait.until(ExpectedConditions.visibilityOfElementLocated(radioBtnOneWay)).click();
 
         return this;
